@@ -7,6 +7,7 @@ import Page1 from "../ProjectOne/screens/Page1";
 import Page2 from "../ProjectOne/screens/Page2";
 import Page3 from "../ProjectOne/screens/Page3";
 import Page4 from "../ProjectOne/screens/Page4";
+import InfoAboutAnime from "../ProjectOne/screens/InfoAboutAnime";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ export default function App() {
       <Stack.Screen name="Page2" component={Page2}/>
       <Stack.Screen name="Page3" component={Page3}/>
       <Stack.Screen name="Page4" component={Page4}/>
+      <Stack.Screen name="InfoAboutAnime" component={InfoAboutAnime}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

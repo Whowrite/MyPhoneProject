@@ -31,6 +31,7 @@ export default function HomeScreen( {navigation}) {
             flex: 1,
             alignItems: "center",
             justifyContent: "center",
+            backgroundColor: 'beige',
         },
         text:{
             fontSize: 24,
