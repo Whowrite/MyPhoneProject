@@ -1,4 +1,6 @@
 import { View, Text, StyleSheet, Button, FlatList, Image, TouchableOpacity } from 'react-native';
+import React, { useCallback, useState, useEffect, useMemo } from 'react';
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 
 export default function Page1({navigation}) {
     const animes = [
