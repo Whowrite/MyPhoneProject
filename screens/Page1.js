@@ -1,6 +1,14 @@
 import { View, Text, StyleSheet, Button, FlatList, Image, TouchableOpacity } from 'react-native';
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
+
+const fetchDrama = async () => {
+  const response = await fetch('https://my-json-server.typicode.com/Whowrite/MyPhoneProject/drama');
+  if (!response.ok) {
+      throw new Error('Failed to fetch profile data');
+  }
+  return response.json();
+};
 
 export default function Page1({navigation}) {
     const animes = [
@@ -17,6 +25,12 @@ export default function Page1({navigation}) {
            image: 'https://m.media-amazon.com/images/M/MV5BMTQ1ODIzOGQtOGFkZC00MWViLTgyYmUtNWJkNmIxZjYxMTdmXkEyXkFqcGc@._V1_.jpg',
            description: 'Одного прекрасного дня учень старшої школи знаходить чийсь особистий щоденник, підписаний як "Щоденник хвороби". Незабаром з\'ясовується, що щоденник цей належить Сакурі Ямаучі, однокласниці головного героя. Прочитавши його, Харукі дізнається, що дівчина страждає на смертельну хворобу - відмову підшлункової залози. Щоб підтримати її в цій нелегкій ситуації, юнак вирішує потоваришувати з Сакурою, попри їхні абсолютно різні характери.'}
       ];
+
+      const { data: drama, isLoading, error } = useQuery({
+        queryKey: ['drama'],
+        queryFn: fetchDrama,
+    });
+
     return (
         <View style={styles.container}>
         <Text style={styles.text}>Драма</Text>
