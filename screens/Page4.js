@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity, Image } from 'react-native';
+import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchRomantic = async () => {
@@ -10,10 +11,15 @@ const fetchRomantic = async () => {
 };
 
 export default function Page4({navigation}) {
+  useEffect(() => {
+    alert("Вітаю на сторінці Романтика");
+  }, []);
+
   const { data: romantic, isLoading, error } = useQuery({
     queryKey: ['romantic'],
     queryFn: fetchRomantic,
 });
+  const [Clicks, setClicks] = useState(0);
     return (
         <View style={styles.container}>
         <Text style={styles.text}>Романтика</Text>
@@ -23,7 +29,11 @@ export default function Page4({navigation}) {
           renderItem={({ item }) => (
             <View style={styles.text}>
               <Text style={{fontSize: 18, marginBottom: 7}}>{item.title} </Text>
-              <TouchableOpacity onPress={() => navigation.navigate('InfoAboutAnime', {title: item.title, img: item.image, page: 'Page4', desc: item.description})} style={styles.button}>
+              <TouchableOpacity
+                            onPress={() => {
+                              navigation.navigate('InfoAboutAnime', {title: item.title, img: item.image, page: 'Page4', desc: item.description, click: Clicks});
+                              setClicks(Clicks + 1);
+                            }} style={styles.button}>
         <Image 
           source={{ uri: item.image }} // URL зображення для кнопки
           style={styles.buttonImage} // Стилі для зображення кнопки

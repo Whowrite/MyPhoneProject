@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
+import React, { useCallback, useEffect, useMemo } from 'react';
 
 export default function HomeScreen( {navigation}) {
     const buttons = [
@@ -17,8 +18,7 @@ export default function HomeScreen( {navigation}) {
             <View style={styles.buttonContainer}>
               <Button
                 title={item.title}
-                onPress={() => navigation.navigate(item.screen)}
-              />
+                onPress={() => navigation.navigate(item.screen)}/>
             </View>
           )}
         />
